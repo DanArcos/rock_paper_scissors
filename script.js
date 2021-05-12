@@ -29,7 +29,7 @@ function computerPlay(){
 function playRound(playerSelection, computerSelection) {
     let playerMove = playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1).toLowerCase();
     if(playerMove!=="Rock"&&playerMove!=="Paper"&&playerMove!=="Scissors") {
-        return "Not a valid move!"
+        return 3;
     }
     else if (playerMove===computerSelection){
         console.log("Draw");
@@ -50,10 +50,40 @@ function playRound(playerSelection, computerSelection) {
 }
 
 function game(num_rounds){
+    let wins = 0;
+    let losses = 0;
+    let draws = 0;
+    
     for (let i = 0; i < num_rounds; i++) {
-        console.log(i);
-        playRound("rock", computerPlay());
+        let playerChoice = prompt("Rock, Paper, or Scissors?");
+        
+        let round = playRound(playerChoice, computerPlay());
+        if (round === 1){
+            wins++;
+        }
+        else if (round === 0){
+            losses++;
+        }
+        else if (round===7) {
+            draws++;
+        } else {
+            console.log("Not a valid game.")
+        }
     }
+
+    if (wins > losses){
+        console.log("Congrats! You've won the game!");
+    }
+    else if (losses > wins){
+        console.log("You've lost the game!")
+    }
+    else {
+        console.log("This Game is a draw!")
+    }
+
+    console.log("Total Wins:" + wins);
+    console.log("Total Losses: " +losses);
+    console.log("Total Draws: " + draws);
 }
 
 //const playerSelection = "rock";
