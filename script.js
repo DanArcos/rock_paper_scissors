@@ -1,4 +1,4 @@
-console.log("Test");
+//console.log("Test");
 
 function getRandomNumber(max){
     return (Math.floor(Math.random()*max));
@@ -32,19 +32,31 @@ function playRound(playerSelection, computerSelection) {
         return "Not a valid move!"
     }
     else if (playerMove===computerSelection){
-        return "Draw"
+        console.log("Draw");
+        return 7;
+
     }
     else if ( (playerMove === "Rock" && computerSelection === "Scissors")||
     (playerMove === "Paper" && computerSelection === "Rock")||
     (playerMove === "Scissors" && computerSelection === "Paper") ) {
-        return `You Win! ${playerMove} beats ${computerSelection}`;
+        console.log(`You Win! ${playerMove} beats ${computerSelection}`);
+        return 1;
     }
     else {
-        return `You Lose! ${computerSelection} beats ${playerMove}`;
+        console.log(`You Lose! ${computerSelection} beats ${playerMove}`);
+        return 0;
     }
     //console.log(playerMove);
 }
 
-const playerSelection = "rock";
-const computerSelection = computerPlay();
-console.log(playRound(playerSelection, computerSelection));
+function game(num_rounds){
+    for (let i = 0; i < num_rounds; i++) {
+        console.log(i);
+        playRound("rock", computerPlay());
+    }
+}
+
+//const playerSelection = "rock";
+//const computerSelection = computerPlay();
+//console.log(playRound(playerSelection, computerSelection));
+game(5);
