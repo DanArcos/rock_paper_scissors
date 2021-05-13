@@ -34,7 +34,6 @@ function playRound(playerSelection, computerSelection) {
     else if (playerMove===computerSelection){
         console.log("Draw");
         return 7;
-
     }
     else if ( (playerMove === "Rock" && computerSelection === "Scissors")||
     (playerMove === "Paper" && computerSelection === "Rock")||
@@ -86,7 +85,62 @@ function game(num_rounds){
     console.log("Total Draws: " + draws);
 }
 
+function update_counter(round){
+    let playerScore = 1
+    let compScore = document.getElementById("computer_counter").value;
+    if (round === 1) {
+        console.log(document.getElementById("player_counter").elements[0]++)
+    }
+}
 //const playerSelection = "rock";
 //const computerSelection = computerPlay();
 //console.log(playRound(playerSelection, computerSelection));
-game(5);
+//game(5);
+
+//Initialize values
+let wins = 0;
+let losses = 0;
+let draws = 0;
+
+//Step 1: load everything
+console.log("Loaded")
+
+//Step 2: on click play a round
+
+//Event listener for Rock Button
+window.onload = function(){
+    document.getElementById('btn_rock').addEventListener("click", clickRock);
+    document.getElementById('btn_paper').addEventListener("click", clickPaper);
+    document.getElementById('btn_scissor').addEventListener("click", clickScissors);
+}
+
+function update_all(playerChoice, compChoice){
+    game = playRound(playerChoice, compChoice)
+    document.getElementById('player_choice').innerHTML = playerChoice;
+    document.getElementById('comp_choice').innerHTML = compChoice;
+    
+    if (game===1){
+        document.getElementById('result').innerHTML = "You Win!";
+    }
+    else if (game===0){
+        document.getElementById('result').innerHTML = "You Lose!";
+    }
+    else {
+        document.getElementById('result').innerHTML = "Draw!";
+    }
+    //console.log(game);
+}
+
+function clickRock(){
+    update_all("Rock", computerPlay())
+}
+
+function clickPaper(){
+    update_all("Paper", computerPlay())
+}
+
+function clickScissors(){
+    update_all("Scissors", computerPlay())
+}
+//Step 3: Display Prompt
+//Step 4: Update Counters
