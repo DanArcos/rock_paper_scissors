@@ -85,18 +85,6 @@ function game(num_rounds){
     console.log("Total Draws: " + draws);
 }
 
-function update_counter(round){
-    let playerScore = 1
-    let compScore = document.getElementById("computer_counter").value;
-    if (round === 1) {
-        console.log(document.getElementById("player_counter").elements[0]++)
-    }
-}
-//const playerSelection = "rock";
-//const computerSelection = computerPlay();
-//console.log(playRound(playerSelection, computerSelection));
-//game(5);
-
 //Initialize values
 let wins = 0;
 let losses = 0;
@@ -112,6 +100,7 @@ window.onload = function(){
     document.getElementById('btn_rock').addEventListener("click", clickRock);
     document.getElementById('btn_paper').addEventListener("click", clickPaper);
     document.getElementById('btn_scissor').addEventListener("click", clickScissors);
+    document.getElementById('btn_reset').addEventListener("click", resetGame);
 }
 
 function update_all(playerChoice, compChoice){
@@ -120,13 +109,29 @@ function update_all(playerChoice, compChoice){
     document.getElementById('comp_choice').innerHTML = compChoice;
     
     if (game===1){
-        document.getElementById('result').innerHTML = "You Win!";
+        //Increment win counter
+        wins = wins +1
+
+        //Update Result prompt
+        document.getElementById('result_explanation').innerHTML = playerChoice.toString() + " beats " + compChoice.toString();
+        document.getElementById('result_text').innerHTML = "You Win!";
+
+        //Update Counter prompt
+        document.getElementById('player_counter').innerHTML = wins.toString();
     }
     else if (game===0){
-        document.getElementById('result').innerHTML = "You Lose!";
+        //Increment Loss Counter
+        losses = losses +1
+
+        //Update display prompt
+        document.getElementById('result_explanation').innerHTML = compChoice.toString() + " beats " + playerChoice.toString();
+        document.getElementById('result_text').innerHTML = "You Lose!";
+        document.getElementById('computer_counter').innerHTML = losses.toString();
     }
     else {
-        document.getElementById('result').innerHTML = "Draw!";
+        //Update display prompt
+        document.getElementById('result_explanation').innerHTML = "No Dice";
+        document.getElementById('result_text').innerHTML = "Draw!";
     }
     //console.log(game);
 }
@@ -142,5 +147,15 @@ function clickPaper(){
 function clickScissors(){
     update_all("Scissors", computerPlay())
 }
-//Step 3: Display Prompt
+
+//Update reset Game Logic
+function resetGame() {
+    wins = 0;
+    losses = 0;
+    document.getElementById('result_explanation').innerHTML = "";
+    document.getElementById('result_text').innerHTML = "";
+    document.getElementById('computer_counter').innerHTML = losses.toString();
+    document.getElementById('player_counter').innerHTML = wins.toString();
+}
+
 //Step 4: Update Counters

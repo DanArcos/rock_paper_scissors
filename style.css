@@ -1,6 +1,11 @@
 header{
     display: flex;
     justify-content: center;
+    background-color: rgb(230,230,230);
+    position:absolute;
+    top:0;
+    left:0;
+    width: 100%;
 }
 
 #main_content { 
@@ -20,9 +25,23 @@ header{
     justify-content: center;
 }
 
-#player_counter{
+#player_choice {
+    /*background-color: coral;*/
+    width:100px;
+    height:40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
-} 
+#comp_choice {
+    /*background-color: red;*/
+    width:100px;
+    height:40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 #score_computer_div {
     display: flex;
@@ -30,22 +49,38 @@ header{
     align-items: center;
 }
 
-#result{
+#result_div{
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
+    /*background-color: grey;*/
+    height:100px;
 }
 
 #button_wrapper {
     display: flex;
     justify-content: center;
     gap: 40px;
-    
-    background-color: aquamarine;
-
+    /*background-color: aquamarine;*/
 }
 
 #button_wrapper button {
     width: 100px;
+    font-size: 20px;
+}
+
+#result_text{
+
+}
+
+#reset_wrapper {
+    display: flex;
+    justify-content: center;
+    /*background-color: turquoise;*/
+}
+
+#reset_wrapper button {
     font-size: 20px;
 }
 
