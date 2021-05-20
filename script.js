@@ -95,59 +95,70 @@ console.log("Loaded")
 
 //Link elements to their respective ids
 const playButtons = document.querySelectorAll(".play_button");
+const resetButton = document.querySelector('#btn_reset');
 
 //Iterate through all buttons
 playButtons.forEach((button) => {
     button.addEventListener("click", function(e){
         console.log(button.textContent);
-        update_all(button.textContent, computerPlay());
+        if(wins ===5 || losses===5){
+            //Do nothing
+        } else {
+            update_all(button.textContent, computerPlay());
+        }
+        
     });
 });
 
-//Step 2: on click play a round
-
-
-
-//Event listener for Rock Button
-/*window.onload = function(){
-    document.getElementById('btn_rock').addEventListener("click", clickRock);
-    document.getElementById('btn_paper').addEventListener("click", clickPaper);
-    document.getElementById('btn_scissor').addEventListener("click", clickScissors);
-    document.getElementById('btn_reset').addEventListener("click", resetGame);
-}*/
+resetButton.addEventListener('click', resetGame);
 
 function update_all(playerChoice, compChoice){
     game = playRound(playerChoice, compChoice)
-    document.getElementById('player_choice').innerHTML = playerChoice;
-    document.getElementById('comp_choice').innerHTML = compChoice;
+    document.getElementById('player_choice').textContent = playerChoice;
+    document.getElementById('comp_choice').textContent = compChoice;
     
-    if (game===1){
-        //Increment win counter
-        wins = wins +1
-
-        //Update Result prompt
-        document.getElementById('result_explanation').innerHTML = playerChoice.toString() + " beats " + compChoice.toString();
-        document.getElementById('result_text').innerHTML = "You Win!";
-
-        //Update Counter prompt
-        document.getElementById('player_counter').innerHTML = wins.toString();
-    }
-    else if (game===0){
-        //Increment Loss Counter
-        losses = losses +1
-
-        //Update display prompt
-        document.getElementById('result_explanation').innerHTML = compChoice.toString() + " beats " + playerChoice.toString();
-        document.getElementById('result_text').innerHTML = "You Lose!";
-        document.getElementById('computer_counter').innerHTML = losses.toString();
+    if (wins ===5 || losses===5){
+        //Do Nothing
     }
     else {
-        //Update display prompt
-        document.getElementById('result_explanation').innerHTML = "No Dice";
-        document.getElementById('result_text').innerHTML = "Draw!";
+        if (game===1) {
+            //Increment win counter
+            wins = wins +1
+    
+            //Update Result prompt
+            document.getElementById('result_explanation').textContent = playerChoice.toString() + " beats " + compChoice.toString();
+            //
+    
+            //Update Counter prompt
+            document.getElementById('player_counter').textContent = wins.toString();
+
+            if (wins===5){
+                document.getElementById('result_text').textContent = "Game Over You Win!";
+            }
+        }
+        else if (game===0){
+            //Increment Loss Counter
+            losses = losses +1
+    
+            //Update display prompt
+            document.getElementById('result_explanation').textContent = compChoice.toString() + " beats " + playerChoice.toString();
+            //
+            document.getElementById('computer_counter').textContent = losses.toString();
+            if (losses===5){
+                document.getElementById('result_text').textContent = "Game Over. You Lose!";
+            }
+        }
+        else {
+            //Update display prompt
+            document.getElementById('result_explanation').textContent = "Draw";
+            //document.getElementById('result_text').textContent = "Draw!";
+        }
+        //console.log(game);
     }
-    //console.log(game);
+
 }
+
+    
 
 function clickRock(){
     update_all("Rock", computerPlay())
@@ -165,10 +176,10 @@ function clickScissors(){
 function resetGame() {
     wins = 0;
     losses = 0;
-    document.getElementById('result_explanation').innerHTML = "";
-    document.getElementById('result_text').innerHTML = "";
-    document.getElementById('computer_counter').innerHTML = losses.toString();
-    document.getElementById('player_counter').innerHTML = wins.toString();
+    document.getElementById('result_explanation').textContent = "";
+    document.getElementById('result_text').textContent = "";
+    document.getElementById('computer_counter').textContent = losses.toString();
+    document.getElementById('player_counter').textContent = wins.toString();
 }
 
-//Step 4: Update Counters
+
