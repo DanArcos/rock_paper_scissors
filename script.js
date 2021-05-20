@@ -93,15 +93,28 @@ let draws = 0;
 //Step 1: load everything
 console.log("Loaded")
 
+//Link elements to their respective ids
+const playButtons = document.querySelectorAll(".play_button");
+
+//Iterate through all buttons
+playButtons.forEach((button) => {
+    button.addEventListener("click", function(e){
+        console.log(button.textContent);
+        update_all(button.textContent, computerPlay());
+    });
+});
+
 //Step 2: on click play a round
 
+
+
 //Event listener for Rock Button
-window.onload = function(){
+/*window.onload = function(){
     document.getElementById('btn_rock').addEventListener("click", clickRock);
     document.getElementById('btn_paper').addEventListener("click", clickPaper);
     document.getElementById('btn_scissor').addEventListener("click", clickScissors);
     document.getElementById('btn_reset').addEventListener("click", resetGame);
-}
+}*/
 
 function update_all(playerChoice, compChoice){
     game = playRound(playerChoice, compChoice)
